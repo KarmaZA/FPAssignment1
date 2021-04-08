@@ -9,4 +9,9 @@ data Op = Add | Mul
 
 eval :: Expr -> Int
 eval (Val x) = x
-eval (App x (Val x1) (Val x2)) = x1 + x2  
+eval (App Add x1 x2) = sum (values x1 ++ values x2)
+eval (App Mul x1 x2) = product(values x1 ++ values x2) 
+
+values :: Expr -> [Int]
+--elements [] = []
+values (Val x) = [x]
