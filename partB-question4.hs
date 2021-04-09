@@ -1,11 +1,12 @@
+--Splits the list into a set of tuples that contain two lists that add up to become the initial list
 split :: [Int] -> [([Int],[Int])]
-split [] = [([],[])]
-split [x] = error "Not enough elements"
+split [] = [([],[])] --empty list condition
+split [x] = error "Not enough elements" -- too few condition
 split m = do
     let l = length m
-    split1 (l-1) m
+    split1 (l-1) m -- recursion
 
-split1 1 xs = do
+split1 1 xs = do 
     let l = length xs
     [ ( take (l-1) xs, drop (l-1) xs) ] 
 
