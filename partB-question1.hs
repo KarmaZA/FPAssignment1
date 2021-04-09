@@ -14,4 +14,8 @@ eval (App Mul x1 x2) = product(values x1 ++ values x2)
 
 values :: Expr -> [Int]
 --elements [] = []
+-- Needed to update this because of B6
+
 values (Val x) = [x]
+values (App Add x y) = values x ++ values y
+values (App Mul x y) = values x ++ values y

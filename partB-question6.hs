@@ -11,6 +11,8 @@ eval (App Mul x1 x2) = product(values x1 ++ values x2)
 values :: Expr -> [Int]
 --elements [] = []
 values (Val x) = [x]
+values (App Add x y) = values x ++ values y
+values (App Mul x y) = values x ++ values y
 
 --code from Question B2
 
@@ -66,3 +68,7 @@ combine l r = [App o l r | o <- [Mul, Add]]
 
 --code for B6
 solve :: [Int] -> Int -> [Expr]
+solve xs x = do
+   [e | ns <- perms xs
+      , e <- exprs ns
+      , eval e == x]
